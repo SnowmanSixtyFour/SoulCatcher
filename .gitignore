@@ -1,0 +1,13 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Visual Studio
+/.vs
+
+# Build
+/SoulCatcher/bin
+/SoulCatcher/obj
+
+# Content
+/SoulCatcher/Content/bin
+/SoulCatcher/Content/obj
