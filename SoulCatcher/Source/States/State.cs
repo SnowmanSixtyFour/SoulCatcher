@@ -106,6 +106,15 @@ namespace SoulCatcher.Source.States
             else return false;
         }
 
+        public bool KeyUp(Keys key)
+        {
+            if (keyboard.IsKeyUp(key))
+            {
+                return true;
+            }
+            else return false;
+        }
+
         public bool MouseMoved()
         {
             if (mouseDelta.X != 0 || mouseDelta.Y != 0)

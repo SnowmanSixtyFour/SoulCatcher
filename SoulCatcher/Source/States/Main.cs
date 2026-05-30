@@ -13,12 +13,12 @@ namespace SoulCatcher.Source.States
     {
         private State currentState;
 
-        private LevelState levelState;
+        private Overworld levelState;
 
         public Main()
         {
             // Set States
-            levelState = new LevelState();
+            levelState = new Overworld();
 
             // Set Current State
             currentState = levelState;

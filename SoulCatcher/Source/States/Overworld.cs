@@ -1,4 +1,4 @@
-﻿// An example of using the State class, to create a level
+﻿// The overworld state of the game, featuring the traversable map and player.
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,12 +8,15 @@ using SoulCatcher.Source.Objects;
 
 namespace SoulCatcher.Source.States
 {
-    internal class LevelState : State
+    internal class Overworld : State
     {
         Character player;
         Text debug;
 
-        public LevelState()
+        // Movement Variables
+        private int movementSpeed = 4;
+
+        public Overworld()
         {
             // Test Character
             player = new Character(Global.player, new Point(10, 200), new Point(544, 32), new Point(32, 32), Color.White);
@@ -41,28 +44,47 @@ namespace SoulCatcher.Source.States
                     + "\nHeight: " + player.Height);
 
                 // Char Movement
+                int newX = 0;
+                int newY = 0;
+
+                // Update New Positions
                 if (KeyDown(Keys.Left))
                 {
-                    player.X -= 2;
+                    newX--;
                 }
+
                 if (KeyDown(Keys.Right))
                 {
-                    player.X += 2;
+                    newX++;
                 }
+
                 if (KeyDown(Keys.Up))
                 {
-                    player.Y -= 2;
+                    newY--;
                 }
+
                 if (KeyDown(Keys.Down))
                 {
-                    player.Y += 2;
+                    newY++;
                 }
+
+                // Prevent Diagonal Movement
+                if (Global.movementType == Global.MovementType.Default)
+                {
+                    if (newX != 0) newY = 0;
+                    if (newY != 0) newX = 0;
+                }
+
+                // Update Player Position
+                player.X += newX * movementSpeed;
+                player.Y += newY * movementSpeed;
 
                 // Char Animations
                 if (!KeyDown(Keys.Left) // Idle
                     && !KeyDown(Keys.Right)
                     && !KeyDown(Keys.Up)
-                    && !KeyDown(Keys.Down))
+                    && !KeyDown(Keys.Down)
+                    || newX == 0 && newY == 0)
                 {
                     player.PlayAnimation("idle");
                 }

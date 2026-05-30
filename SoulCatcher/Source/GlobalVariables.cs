@@ -47,7 +47,6 @@ namespace SoulCatcher.Source
         public enum MovementType
         {
             Default,        // 4 Directions
-            Directional,    // 8 Directions
             Free            // Free Movement
         }
 
