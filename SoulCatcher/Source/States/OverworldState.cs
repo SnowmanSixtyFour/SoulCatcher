@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SoulCatcher.Source.Graphics;
-using SoulCatcher.Source.Objects;
+using SoulCatcher.Source.Objects.State;
 using System;
 
 namespace SoulCatcher.Source.States

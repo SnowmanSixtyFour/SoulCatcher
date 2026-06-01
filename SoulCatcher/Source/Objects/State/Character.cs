@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SoulCatcher.Source.Graphics;
 
-namespace SoulCatcher.Source.Objects
+namespace SoulCatcher.Source.Objects.State
 {
     internal class Character
     {
