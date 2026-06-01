@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SoulCatcher.Source.Graphics;
 using SoulCatcher.Source.Objects;
+using System;
 
 namespace SoulCatcher.Source.States
 {
-    internal class Overworld : State
+    internal class OverworldState : State
     {
         Character player;
         Text debug;
@@ -16,7 +17,7 @@ namespace SoulCatcher.Source.States
         // Movement Variables
         private int movementSpeed = 4;
 
-        public Overworld()
+        public OverworldState()
         {
             // Test Character
             player = new Character(Global.player, new Point(10, 200), new Point(544, 32), new Point(32, 32), Color.White);
@@ -32,7 +33,7 @@ namespace SoulCatcher.Source.States
             debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f);
         }
 
-        public override void OnUpdate(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime, Main main)
         {
             // While Unpaused
             if (!Global.paused)
@@ -75,6 +76,10 @@ namespace SoulCatcher.Source.States
                     if (newY != 0) newX = 0;
                 }
 
+                // Prevent moving both ways at once
+                if (KeyDown(Keys.Left) && KeyDown(Keys.Right)) newX = 0;
+                if (KeyDown(Keys.Up) && KeyDown(Keys.Down)) newY = 0;
+
                 // Update Player Position
                 player.X += newX * movementSpeed;
                 player.Y += newY * movementSpeed;
@@ -90,21 +95,21 @@ namespace SoulCatcher.Source.States
                 }
                 else // Walking
                 {
-                    if (KeyDown(Keys.Up))
-                    {
-                        player.PlayAnimation("walkUp");
-                    }
-                    else if (KeyDown(Keys.Down))
-                    {
-                        player.PlayAnimation("walkDown");
-                    }
-                    else if (KeyDown(Keys.Left))
+                    if (KeyDown(Keys.Left))
                     {
                         player.PlayAnimation("walkLeft");
                     }
                     else if (KeyDown(Keys.Right))
                     {
                         player.PlayAnimation("walkRight");
+                    }
+                    else if (KeyDown(Keys.Up))
+                    {
+                        player.PlayAnimation("walkUp");
+                    }
+                    else if (KeyDown(Keys.Down))
+                    {
+                        player.PlayAnimation("walkDown");
                     }
                 }
 
@@ -114,6 +119,8 @@ namespace SoulCatcher.Source.States
                     Global.crtFilterEnabled = !Global.crtFilterEnabled;
                 }
             }
+
+            SwitchState(main.battle, KeyPress(Keys.Space));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)

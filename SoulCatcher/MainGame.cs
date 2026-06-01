@@ -107,7 +107,7 @@ namespace SoulCatcher
             MainGame.gameTime = gameTime;
 
             // Update game
-            game.Update(gameTime);
+            game.Update(gameTime, game);
 
             base.Update(gameTime);
         }

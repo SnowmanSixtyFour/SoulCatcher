@@ -11,20 +11,22 @@ namespace SoulCatcher.Source.States
 {
     internal class Main : State
     {
-        private State currentState;
+        public State currentState;
 
-        private Overworld levelState;
+        public OverworldState overworld;
+        public BattleState battle;
 
         public Main()
         {
             // Set States
-            levelState = new Overworld();
+            overworld = new OverworldState();
+            battle = new BattleState();
 
             // Set Current State
-            currentState = levelState;
+            currentState = overworld;
         }
 
-        public override void OnUpdate(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime, Main main)
         {
             // Pausing
             if (canPause) // If Pausing is Possible
@@ -40,7 +42,7 @@ namespace SoulCatcher.Source.States
             if (Global.pauseWhenInactive && !Global.active) Global.paused = true;
 
             // Update Current State
-            currentState.Update(gameTime);
+            currentState.Update(gameTime, this);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch)
