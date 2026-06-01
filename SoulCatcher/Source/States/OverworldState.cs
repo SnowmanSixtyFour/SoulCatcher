@@ -19,16 +19,14 @@ namespace SoulCatcher.Source.States
 
         public OverworldState()
         {
-            // Test Character
+            // Character
             player = new Character(Global.player, new Point(10, 200), new Point(544, 32), new Point(32, 32), Color.White);
             player.SetSize(2);
 
-            // Test Create Animations
-            player.CreateAnimation("idle", 0, 0);
-            player.CreateAnimation("walkUp", 1, 4);
-            player.CreateAnimation("walkDown", 5, 8);
-            player.CreateAnimation("walkLeft", 9, 12);
-            player.CreateAnimation("walkRight", 13, 16);
+            player.CreateAnimation("walkDown", 0, 3);
+            player.CreateAnimation("walkUp", 4, 7);
+            player.CreateAnimation("walkLeft", 8, 11);
+            player.CreateAnimation("walkRight", 12, 15);
 
             debug = new Text(Global.arial, "", new Vector2(10, 10), Color.White, 1.0f);
         }
@@ -91,7 +89,7 @@ namespace SoulCatcher.Source.States
                     && !KeyDown(Keys.Down)
                     || newX == 0 && newY == 0)
                 {
-                    player.PlayAnimation("idle");
+                    player.ResetAnimation();
                 }
                 else // Walking
                 {

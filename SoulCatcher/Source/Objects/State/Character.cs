@@ -148,6 +148,19 @@ namespace SoulCatcher.Source.Objects.State
             }
         }
 
+        public void ResetAnimation()
+        {
+            // Reset to First Frame of Current Animation
+            for (int i = 0; i < animation.Count; i++)
+            {
+                if (frame >= startFrame[i] && frame <= endFrame[i])
+                {
+                    frame = startFrame[i];
+                    break;
+                }
+            }
+        }
+
         public void SetSprite(Texture2D newTexture)
         {
             sprite.SetTexture(newTexture);
