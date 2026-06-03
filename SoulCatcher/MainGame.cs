@@ -2,9 +2,6 @@
 // Created by Snowman64
 // Started on May 29, 2026
 
-// Made for Major Jam 8.
-// https://itch.io/jam/major-jam-8-wonder
-
 // Special Thanks:
 // CRT Scanline Shaders (Public Domain) - Timothy Lottes
 
