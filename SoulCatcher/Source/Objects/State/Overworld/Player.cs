@@ -12,14 +12,9 @@ namespace SoulCatcher.Source.Objects.State.Overworld
 {
     internal class Player
     {
-        // Customizable Variables
-
+        // Player Variables
         public static string playerName = "Player";
-
         public int movementSpeed = 4;
-
-        // Default Variables
-
         public Character character;
 
         public Player()
@@ -35,10 +30,14 @@ namespace SoulCatcher.Source.Objects.State.Overworld
             character.CreateAnimation("walkRight", 12, 15);
         }
 
-        public void Update(GameTime gameTime, OverworldState state)
+        public void Update(GameTime gameTime, States.State state)
         {
             // --- MOVEMENT ---
 
+            // Prevent Zero Movement Speed
+            if (movementSpeed == 0) movementSpeed = 1;
+
+            // New Position Variables
             int newX = 0;
             int newY = 0;
 
